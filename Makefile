@@ -19,7 +19,13 @@ all: ${LIB} ${SOLIB} toml2json toml-c-test header/toml-c.h
 header/toml-c.h: ${HDRS} ${SRCS}
 	@echo 'create $@'
 	@: >header/toml-c.h
-	@sed  '/#endif \/\/ TOML_H/d; /#define TOML_H/a#ifndef _POSIX_C_SOURCE\n#define _POSIX_C_SOURCE 200809L\n#endif' toml.h >>header/toml-c.h
+	@sed 's/^/\/\/ /' LICENSE >>header/toml-c.h
+	@echo '' >>header/toml-c.h
+	@sed -n '1,/#define TOML_H/p' toml.h >>header/toml-c.h
+	@echo '#ifndef _POSIX_C_SOURCE' >>header/toml-c.h
+	@echo '#define _POSIX_C_SOURCE 200809L' >>header/toml-c.h
+	@echo '#endif' >>header/toml-c.h
+	@sed '1,/#define TOML_H/d; /#endif \/\/ TOML_H/d' toml.h >>header/toml-c.h
 	@sed  '/#include "toml.h"/d; /_POSIX_C_SOURCE/d' toml.c >>header/toml-c.h
 	@echo '#endif // TOML_H' >>header/toml-c.h
 
