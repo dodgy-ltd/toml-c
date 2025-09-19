@@ -3,6 +3,8 @@
 #
 # Run the toml-test compliance tests: https://github.com/toml-lang/toml-test
 
+set -x
+
 decoder="./toml2json"
 toml=1.0.0
 
@@ -58,4 +60,4 @@ if ! command -v "$tt" >/dev/null; then
 	exit 1
 fi
 
-"$tt" -toml="$toml" -skip ${skip[@]} "$@" -- "$decoder"
+"$tt" -toml="$toml" ${skip[@]} "$@" -- "$decoder"
