@@ -62,4 +62,5 @@ report: check
 	gcov -kt toml.c
 
 clean:
-	rm -f *.o *.gcov *.gcda *.gcno toml2json toml-c-test ${LIB} ${SOLIB}
+	rm -f *.o *.gcov *.gcda *.gcno header/toml-c.h toml2json toml-c-test ${LIB} ${SOLIB}
+	rm -rf *.dSYM
