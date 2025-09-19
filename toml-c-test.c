@@ -48,7 +48,7 @@ void test_toml_table_value(void) {
 	if (!i.ok)
 		errorf("int.ok not set");
 	if (i.u.i != 42)
-		errorf("int.u.u wrong value: %ld", i.u.i);
+		errorf("int.u.u wrong value: %lld", i.u.i);
 
 	toml_value_t b = toml_table_bool(tbl, "bool");
 	if (!b.ok)
